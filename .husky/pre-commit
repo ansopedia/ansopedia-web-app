@@ -1,5 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+echo "Prettifying code..."
+pnpm prettier:fix
+
 echo "Linting code..."
 pnpm lint-staged
