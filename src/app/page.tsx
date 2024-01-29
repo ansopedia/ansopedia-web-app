@@ -1,5 +1,5 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Image from 'next/image';
+import styles from './page.module.css';
 
 export default function Home() {
   return (
@@ -7,7 +7,8 @@ export default function Home() {
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+          <code className={styles.code}>src/app/page.tsx</code>{' '}
+          <span>heleo world </span>
         </p>
         <div>
           <a
@@ -15,7 +16,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{" "}
+            By{' '}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -87,6 +88,10 @@ export default function Home() {
           </h2>
           <p>
             Instantly deploy your Next.js site to a shareable URL with Vercel.
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo,
+            quod. Nisi veniam earum sequi numquam eos. Non, reprehenderit
+            debitis voluptates illo enim porro quae. Ea numquam sapiente rerum
+            libero maiores!
           </p>
         </a>
       </div>
