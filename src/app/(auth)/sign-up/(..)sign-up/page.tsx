@@ -1,10 +1,10 @@
-import Link from 'next/link';
+import SignUpForm from '../../../../components/SignUpForm';
 
-export default function SignUpModal() {
-  return (
-    <div>
-      <h2>SignUp Modal</h2>
-      <Link href="/login">Login</Link>
-    </div>
-  );
-}
+const SignUpModal = () => (
+  <>
+    <h1>Sign Up Modal</h1>
+    <SignUpForm />
+  </>
+);
+
+export default SignUpModal;

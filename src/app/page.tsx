@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Link href="/login">Login</Link>
+      <Link href="/sign-up">Sign up</Link>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;
