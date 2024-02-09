@@ -4,7 +4,7 @@ import { isLoggedIn } from './utils/login';
 export const middleware = async (request: NextRequest) => {
   const isLogged = isLoggedIn(request);
   if (!isLogged) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    return NextResponse.redirect(new URL('/', request.url));
   }
 
   return NextResponse.next();
