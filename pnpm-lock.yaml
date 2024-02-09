@@ -23,13 +23,13 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^20
+    specifier: ^20.11.10
     version: 20.11.10
   '@types/react':
-    specifier: ^18
+    specifier: ^18.2.48
     version: 18.2.48
   '@types/react-dom':
-    specifier: ^18
+    specifier: ^18.2.18
     version: 18.2.18
   eslint:
     specifier: ^8.56.0
@@ -62,7 +62,7 @@ devDependencies:
     specifier: ^3.2.4
     version: 3.2.4
   typescript:
-    specifier: ^5
+    specifier: ^5.3.3
     version: 5.3.3
 
 packages:

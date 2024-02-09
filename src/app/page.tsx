@@ -7,6 +7,7 @@ export default function Home() {
     <main className={styles.main}>
       <Link href="/login">Login</Link>
       <Link href="/sign-up">Sign up</Link>
+      <Link href="/dashboard">Dashboard</Link>
       <div className={styles.description}>
         <p>
           Get started by editing&nbsp;

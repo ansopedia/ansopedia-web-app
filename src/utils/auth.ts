@@ -1,17 +1,82 @@
-export async function isLoggedIn(): Promise<boolean> {
-  if (typeof window !== 'undefined') {
-    const authHeader = localStorage.getItem('accessToken') || '';
-    const response = await fetch('https://your-api.com/verify-access-token', {
-      headers: { Authorization: `Bearer ${authHeader}` },
-    });
+'use server';
+import axios, { AxiosError } from 'axios';
+import { cookies } from 'next/headers';
 
-    if (!response.ok) {
-      // The token was not valid or there was another error.
-      return false;
+export const saveAccessToken = (token: string) => {
+  cookies().set({
+    name: 'accessToken',
+    value: token,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  });
+};
+
+export const saveRefreshToken = (token: string) => {
+  cookies().set({
+    name: 'accessToken',
+    value: token,
+    httpOnly: true,
+    secure: true,
+    sameSite: 'strict',
+  });
+};
+
+const url = 'http://localhost:8000/api/v1/user';
+
+export const getUserDetails = async () => {
+  const accessToken = cookies().get('accessToken')?.value;
+  let response;
+  try {
+    if (!accessToken) {
+      const refreshToken = cookies().get('refreshToken');
+      if (!refreshToken) {
+        return null;
+      }
+
+      const accessToken = await refreshAccessToken(refreshToken.value);
+      saveAccessToken(accessToken);
+      response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+    } else {
+      response = await axios.get(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
     }
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      if (error.response && error.response.status === 401) {
+        const refreshToken = cookies().get('refreshToken');
+        if (!refreshToken) {
+          return null;
+        }
 
-    // The token was valid.
-    return true;
+        const accessToken = await refreshAccessToken(refreshToken.value);
+        saveAccessToken(accessToken);
+
+        // Retry the request with the new access token
+        await getUserDetails();
+      }
+    }
   }
-  return false;
-}
+
+  return response?.data;
+};
+
+export const refreshAccessToken = async (refreshToken: string) => {
+  const url = 'http://localhost:8000/api/v1/auth/refresh-token';
+  const res = await axios.post(url, null, {
+    headers: {
+      Authorization: `Bearer ${refreshToken}`,
+    },
+    withCredentials: true,
+  });
+
+  const accessToken: string = res.headers.authorization;
+  return accessToken;
+};
