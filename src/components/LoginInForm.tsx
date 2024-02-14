@@ -24,7 +24,7 @@ export default function LoginInForm() {
     };
 
     await saveLogin(user);
-    router.push('/dashboard');
+    router.replace('/dashboard');
   };
 
   return (
