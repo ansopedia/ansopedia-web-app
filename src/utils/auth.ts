@@ -24,9 +24,10 @@ export const saveRefreshToken = (token: string) => {
 
 const url = 'http://localhost:8000/api/v1/user';
 
-export const getUserDetails = async () => {
-  const accessToken = cookies().get('accessToken')?.value;
+export const getUserDetails = async (): Promise<unknown> => {
+  let accessToken = cookies().get('accessToken')?.value;
   let response;
+
   try {
     if (!accessToken) {
       const refreshToken = cookies().get('refreshToken');
@@ -34,38 +35,31 @@ export const getUserDetails = async () => {
         return null;
       }
 
-      const accessToken = await refreshAccessToken(refreshToken.value);
+      accessToken = await refreshAccessToken(refreshToken.value);
       saveAccessToken(accessToken);
-      response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-    } else {
-      response = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
     }
+
+    response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
   } catch (error) {
-    if (error instanceof AxiosError) {
-      if (error.response && error.response.status === 401) {
-        const refreshToken = cookies().get('refreshToken');
-        if (!refreshToken) {
-          return null;
-        }
-
-        const accessToken = await refreshAccessToken(refreshToken.value);
-        saveAccessToken(accessToken);
-
-        // Retry the request with the new access token
-        await getUserDetails();
+    if (error instanceof AxiosError && error.response?.status === 401) {
+      const refreshToken = cookies().get('refreshToken');
+      if (!refreshToken) {
+        return null;
       }
+
+      accessToken = await refreshAccessToken(refreshToken.value);
+      saveAccessToken(accessToken);
+
+      // Retry the request with the new access token
+      return getUserDetails();
     }
   }
 
-  return response?.data;
+  return await response?.json();
 };
 
 export const refreshAccessToken = async (refreshToken: string) => {

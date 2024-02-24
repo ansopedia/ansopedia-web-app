@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getUserDetails } from '../../utils/auth';
 
 export default function Dashboard() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<object | unknown>({});
 
   useEffect(() => {
     (async () => {
