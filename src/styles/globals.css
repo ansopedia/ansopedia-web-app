@@ -105,3 +105,9 @@ a {
     color-scheme: dark;
   }
 }
+
+.sign-up-form {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
