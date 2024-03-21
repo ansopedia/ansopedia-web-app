@@ -1,0 +1,165 @@
+/* reset */
+
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed, 
+	figure, figcaption, footer, header, hgroup, 
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+	}
+/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure, 
+	footer, header, hgroup, menu, nav, section {
+		display: block;
+	}
+	body {
+		line-height: 1;
+	}
+	ol, ul {
+		list-style: none;
+	}
+	blockquote, q {
+		quotes: none;
+	}
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none;
+	}
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+/* header style */
+
+	header li, ul {
+		display: inline;
+	}
+
+	header {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		margin: 0 9%;
+	}
+
+	li {
+		margin: 0 5px;
+	}
+
+/* font styles */
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: rgb(237	121	58);
+	}
+
+	p, li {
+		font-size: .9rem;
+	}
+
+	body {
+		font-family: sans-serif;
+		color: rgb(73,	73,	73);
+	}
+
+/* button styles */
+
+	.button {
+		background-image: linear-gradient(to top right, rgb(238,128,58), rgb(249,185,61));
+		color: white;
+		border-radius: 20px;
+		text-align: center;
+		font-size: .75rem;
+		padding: 10px 25px;
+	}
+	.button:hover {
+		color: white;
+	}
+
+	.button-alt {
+		color: rgb(237	121	58);
+		border-radius: 20px;
+		text-align: center;
+		font-size: .75rem;
+		padding: 10px 25px;
+		border: 1px solid rgb(237 121 58);
+	}
+	.button-alt:hover {
+		color: rgb(237	121	58);
+	}
+
+/* main */
+
+	.main-bg {
+		z-index: -1;
+		position: absolute;
+		right: 0px;
+	}
+
+	.main {
+		display: flex;
+		margin: 100px auto 0 auto;
+		width: 70%;
+	}
+
+	.main section {
+		width: 50%;
+	}
+
+	.main section a {
+		margin: 0 10px 0 0;
+	}
+
+	h1 {
+		font-size: 2.25rem;
+		font-weight: 600;
+	}
+	.main p {
+		margin: 40px 0;
+	}
+
+/* welcome */
+
+	svg {
+		margin: 0 0 -3px 0;
+	}
+
+	.welcome {
+		background-color: #FFEEE3;
+	}
+
+	h2 {
+		font-size: 2rem;
+		text-align: center;
+		font-weight: 600;
+		
+	}
+
+	.welcome p {
+		text-align: center;
+		margin-top: 40px;
+	}
+
+	.emphasis {
+		color: rgb(237	121	58);
+	}
+
